@@ -1,5 +1,4 @@
 // client.js
-
 const net = require("net");
 
 // establishes a connection with the game server
@@ -12,18 +11,20 @@ const connect = function () {
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
-  // Handle incoming data and log it for the player
-  conn.on("data", (data) => {
-    console.log("Server says:", data);
-  });
-
-  // Event listener for when connection is established
+  // Event handler for when the connection is established
   conn.on("connect", () => {
     console.log("Successfully connected to the game server!");
+    
+    // Send the name message to the server
+    conn.write("Name: ABB"); // 'ABB' are the chosen initials
+  });
+
+  // Handle incoming data from the server
+  conn.on("data", (data) => {
+    console.log("Server says:", data);
   });
 
   return conn;
 };
 
-// Export the connect function
 module.exports = connect;
