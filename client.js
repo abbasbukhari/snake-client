@@ -17,6 +17,23 @@ const connect = function () {
     
     // Send the name message to the server
     conn.write("Name: ABB"); // 'ABB' are the chosen initials
+
+
+    // Send a single "Move: up" command
+    conn.write("Move: up");
+
+    // Send multiple successive "Move: up" commands with slight delay
+    setTimeout(() => conn.write("Move: up"), 0);
+    setTimeout(() => conn.write("Move: up"), 50);
+    setTimeout(() => conn.write("Move: up"), 100);
+
+    // Continuous movement using setInterval
+    const moveInterval = setInterval(() => {
+      conn.write("Move: up");
+    }, 50);
+
+    // Stop the continuous movement after 500ms
+    setTimeout(() => clearInterval(moveInterval), 500);
   });
 
   // Handle incoming data from the server
