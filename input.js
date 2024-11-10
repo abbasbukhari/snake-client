@@ -1,34 +1,30 @@
-// input.js
-let connection;
-
 const setupInput = (conn) => {
-  connection = conn;
-
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
-  stdin.on("data", handleUserInput);
+
+  stdin.on("data", (key) => handleUserInput(key, conn));
+
   return stdin;
 };
 
-const handleUserInput = (key) => {
-  if (key === '\u0003') {
+const handleUserInput = (key, conn) => {
+  if (key === "\u0003") { // Ctrl+C to exit
+    console.log("Exiting the game.");
     process.exit();
   }
-  
-  // Movement commands
-  if (key === 'w') connection.write("Move: up");
-  if (key === 'a') connection.write("Move: left");
-  if (key === 's') connection.write("Move: down");
-  if (key === 'd') connection.write("Move: right");
 
-  // Canned messages
-  if (key === '1') connection.write("Say: Let's go!");
-  if (key === '2') connection.write("Say: Watch out!");
-  if (key === '3') connection.write("Say: Ssssssss!");
-  if (key === '4') connection.write("Say: Too close!");
+  const moveCommands = {
+    w: "w",
+    a: "a",
+    s: "s",
+    d: "d",
+  };
+
+  if (moveCommands[key]) {
+    conn.write(moveCommands[key]);  // Send the movement command to the server
+  }
 };
 
-// Export setupInput function
 module.exports = { setupInput };

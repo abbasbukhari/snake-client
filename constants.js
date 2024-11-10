@@ -1,7 +1,5 @@
-// constants.js
-
-const IP = "127.0.0.1"; // replace with actual IP if different
-const PORT = 50541;
+const IP = "127.0.0.1"; // Localhost IP
+const PORT = 50541;      // Port number the server listens on
 
 module.exports = {
   IP,
