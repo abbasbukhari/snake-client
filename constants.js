@@ -1,7 +1,7 @@
-const IP = "127.0.0.1"; // Localhost IP
-const PORT = 50541;      // Port number the server listens on
+const IP = "localhost"; // IP address of the server (localhost for local development)
+const PORT = 50541; // Port number the server listens on
 
 module.exports = {
-  IP,
-  PORT,
+  IP, // Export the IP address
+  PORT, // Export the port number
 };

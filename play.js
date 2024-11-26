@@ -1,12 +1,6 @@
-// play.js
-const { connect } = require("./client");
-const { setupInput } = require("./input");
+const { connect } = require("./client"); // Import the connect function from client.js
+const { setupInput } = require("./input"); // Import the setupInput function from input.js
 
-// Inform the user that the client is attempting to connect
-console.log("Connecting to the game server...");
-
-// Establish connection to the server
-const connection = connect();
-
-// Set up user input handling once connected
-setupInput(connection);
+console.log("Connecting ..."); // Notify the user that the client is connecting to the server
+const connection = connect(); // Establish a connection to the server
+setupInput(connection); // Set up input handling for the client
